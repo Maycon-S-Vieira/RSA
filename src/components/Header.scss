@@ -1,0 +1,192 @@
+@import '../styles/variables';
+@import '../styles/mixins';
+
+.app-header {
+  background: $primary-color;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: $spacing-2xl;
+  position: sticky;
+  top: 0;
+  z-index: $z-sticky;
+  
+  .header-container {
+    @include responsive-container;
+    padding: $spacing-lg $spacing-xl;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: $spacing-2xl;
+    
+    @media (max-width: $breakpoint-lg) {
+      grid-template-columns: 1fr;
+      gap: $spacing-lg;
+      text-align: center;
+    }
+  }
+  
+  .header-brand {
+    h1 {
+      margin: 0;
+      font-size: $font-size-2xl;
+      font-weight: $font-weight-bold;
+      
+      @media (max-width: $breakpoint-md) {
+        font-size: $font-size-xl;
+      }
+    }
+    
+    .subtitle {
+      display: block;
+      font-size: $font-size-sm;
+      opacity: 0.9;
+      font-weight: $font-weight-normal;
+      margin-top: $spacing-xs;
+    }
+  }
+  
+  .header-nav {
+    display: flex;
+    gap: $spacing-lg;
+    justify-content: center;
+    
+    @media (max-width: $breakpoint-lg) {
+      flex-direction: column;
+      gap: $spacing-md;
+    }
+    
+    @media (max-width: $breakpoint-md) {
+      flex-direction: row;
+      gap: $spacing-sm;
+    }
+    
+    .nav-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: $spacing-xs;
+      padding: $spacing-lg $spacing-xl;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: $border-radius;
+      text-decoration: none;
+      color: white;
+      transition: background-color 0.2s ease, color 0.2s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      min-width: 160px;
+      
+      @media (max-width: $breakpoint-md) {
+        padding: $spacing-md;
+        min-width: auto;
+        flex: 1;
+      }
+      
+      &:hover {
+        background: rgba(255, 255, 255, 0.15);
+      }
+      
+      &.active {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+      
+      .nav-icon {
+        font-size: 24px;
+        
+        @media (max-width: $breakpoint-md) {
+          font-size: 20px;
+        }
+      }
+      
+      .nav-text {
+        font-weight: $font-weight-semibold;
+        font-size: $font-size-base;
+        
+        @media (max-width: $breakpoint-md) {
+          font-size: $font-size-sm;
+        }
+      }
+      
+      .nav-description {
+        font-size: $font-size-sm;
+        opacity: 0.8;
+        text-align: center;
+        line-height: 1.3;
+        
+        @media (max-width: $breakpoint-md) {
+          display: none;
+        }
+      }
+    }
+  }
+  
+  .header-info {
+    .current-page {
+      .page-indicator {
+        display: flex;
+        align-items: center;
+        gap: $spacing-sm;
+        padding: $spacing-sm $spacing-md;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: $border-radius;
+        font-size: $font-size-sm;
+        font-weight: $font-weight-medium;
+        
+        @media (max-width: $breakpoint-lg) {
+          justify-content: center;
+        }
+        
+        .indicator-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          animation: pulse 2s infinite;
+        }
+        
+        &.encrypt .indicator-dot {
+          background: $success-color;
+        }
+        
+        &.decrypt .indicator-dot {
+          background: $warning-color;
+        }
+      }
+    }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .app-header {
+    .header-container {
+      padding: $spacing-md;
+    }
+    
+    .header-nav {
+      .nav-link {
+        padding: $spacing-sm;
+        
+        .nav-text {
+          font-size: 12px;
+        }
+        
+        .nav-icon {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}

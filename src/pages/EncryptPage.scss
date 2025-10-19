@@ -1,0 +1,130 @@
+@import '../styles/variables';
+@import '../styles/mixins';
+
+.encrypt-page {
+  .page-content {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-2xl;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-lg;
+  }
+
+  .section-header h2 {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    margin: 0;
+    color: $text-primary;
+  }
+
+  .key-generation-section,
+  .keys-display-section,
+  .encryption-section,
+  .status-section {
+    @include card;
+  }
+
+  .keys-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-xl;
+  }
+
+  .key-group {
+    padding: $spacing-lg;
+    background: $background-secondary;
+    border-radius: $border-radius;
+    border: 1px solid $border-color;
+  }
+
+  .key-group h3 {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    margin-bottom: $spacing-md;
+    color: $text-primary;
+  }
+
+  .result-section {
+    margin-top: $spacing-xl;
+    padding: $spacing-lg;
+    background: $background-secondary;
+    border-radius: $border-radius;
+    border: 1px solid $border-color;
+  }
+
+  .result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-md;
+  }
+
+  .result-header h3 {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    margin: 0;
+    color: $text-primary;
+  }
+
+  .cipher-text {
+    background: $background-primary;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    padding: $spacing-md;
+    font-family: 'Courier New', monospace;
+    font-size: $font-size-sm;
+    white-space: pre-wrap;
+    word-break: break-all;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+
+  .result-info p {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-xs;
+    color: $text-secondary;
+    margin: 0;
+  }
+
+  .error-message--root {
+    @include error-message;
+    background: rgba($error-color, 0.1);
+    border: 1px solid rgba($error-color, 0.3);
+    border-radius: $border-radius;
+    padding: $spacing-md;
+    margin-bottom: $spacing-lg;
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+  }
+}
+
+@media (max-width: $breakpoint-lg) {
+  .encrypt-page .keys-grid {
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .encrypt-page {
+    .section-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: $spacing-sm;
+    }
+    
+    .form-row {
+      flex-direction: column;
+    }
+  }
+}

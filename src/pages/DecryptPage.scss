@@ -1,0 +1,147 @@
+@import '../styles/variables';
+@import '../styles/mixins';
+
+.decrypt-page {
+  .page-content {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-2xl;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-lg;
+  }
+
+  .section-header h2 {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    margin: 0;
+    color: $text-primary;
+  }
+
+  .keys-input-section,
+  .decryption-section {
+    @include card;
+  }
+
+  .keys-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-xl;
+  }
+
+  .key-group {
+    padding: $spacing-lg;
+    background: $background-secondary;
+    border-radius: $border-radius;
+    border: 1px solid $border-color;
+  }
+
+  .key-group h3 {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    margin-bottom: $spacing-md;
+    color: $text-primary;
+  }
+
+  .key-description {
+    color: $text-secondary;
+    font-size: $font-size-sm;
+    margin-bottom: $spacing-md;
+  }
+
+  .keys-summary {
+    padding: $spacing-lg;
+    background: $background-secondary;
+    border-radius: $border-radius;
+    border: 1px solid $border-color;
+  }
+
+  .keys-summary h3 {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    margin-bottom: $spacing-md;
+    color: $text-primary;
+  }
+
+  .key-display {
+    font-family: 'Courier New', monospace;
+    font-size: $font-size-sm;
+    color: $text-secondary;
+    margin: $spacing-xs 0;
+  }
+
+  .result-section {
+    margin-top: $spacing-xl;
+    padding: $spacing-lg;
+    background: $background-secondary;
+    border-radius: $border-radius;
+    border: 1px solid $border-color;
+  }
+
+  .result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-md;
+  }
+
+  .result-header h3 {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    margin: 0;
+    color: $text-primary;
+  }
+
+  .decrypted-text {
+    background: $background-primary;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    padding: $spacing-md;
+    font-family: $font-family;
+    font-size: $font-size-base;
+    white-space: pre-wrap;
+    word-break: break-word;
+    min-height: 100px;
+  }
+
+  .error-banner {
+    @include error-message;
+    background: rgba($error-color, 0.1);
+    border: 1px solid rgba($error-color, 0.3);
+    border-radius: $border-radius;
+    padding: $spacing-md;
+    margin-bottom: $spacing-lg;
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+  }
+}
+
+@media (max-width: $breakpoint-lg) {
+  .decrypt-page .keys-grid {
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .decrypt-page {
+    .section-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: $spacing-sm;
+    }
+    
+    .form-row {
+      flex-direction: column;
+    }
+  }
+}

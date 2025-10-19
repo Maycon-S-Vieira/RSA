@@ -1,0 +1,55 @@
+@import '../styles/variables';
+@import '../styles/mixins';
+
+.key-input {
+  @include card;
+  margin-bottom: $spacing-2xl;
+}
+
+.key-input .key-sections {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-xl;
+  margin-bottom: $spacing-lg;
+}
+
+.key-input .public-key-section,
+.key-input .private-key-section {
+  padding: $spacing-lg;
+  background: $background-secondary;
+  border-radius: $border-radius;
+  border: 1px solid $border-color;
+}
+
+.key-input .section-description {
+  color: $text-secondary;
+  font-size: $font-size-sm;
+  margin-bottom: $spacing-md;
+}
+
+.key-input h3 {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  margin-bottom: $spacing-sm;
+  color: $text-primary;
+}
+
+.key-input .field-note {
+  color: $text-muted;
+  font-size: $font-size-sm;
+  margin-top: $spacing-xs;
+}
+
+@media (max-width: $breakpoint-lg) {
+  .key-input .key-sections {
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .key-input {
+    padding: $spacing-lg;
+  }
+}
