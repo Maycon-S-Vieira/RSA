@@ -49,15 +49,15 @@ export const EncryptPage: React.FC = () => {
 
   const watchedValues = watch();
 
-    const handleKeysGenerated = async (keys: RSAKeys) => {
+    const handleKeysGenerated = async (data: EncryptFormData) => {
     clearErrors();
     
-    if (!watchedValues.p || !watchedValues.q) {
+    if (!data.p || !data.q) {
       setError('root', { message: 'Informe os números primos P e Q' });
       return;
     }
 
-    const result = await generateKeys({ p: watchedValues.p, q: watchedValues.q });
+    const result = await generateKeys({ p: data.p, q: data.q });
     
     if (result.success && result.keys) {
       setValue('e', result.keys.publicKey.e);
@@ -157,7 +157,7 @@ export const EncryptPage: React.FC = () => {
             </button>
           </div>
 
-          <form onSubmit={handleSubmit(generateKeys)} className="key-form">
+          <form onSubmit={handleSubmit(handleKeysGenerated)} className="key-form">
             <div className="form-row">
               <div className="form-field">
                 <label htmlFor="p">Número Primo P</label>

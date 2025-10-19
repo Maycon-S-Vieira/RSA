@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from '../utils/useForm';
 import { useDecryption } from '../hooks/useDecryption';
 import './DecryptPage.scss';
@@ -44,6 +44,27 @@ export const DecryptPage: React.FC = () => {
 
   const watchedValues = watch();
 
+  useEffect(() => {
+    const dVal = watchedValues.d?.trim();
+    const nVal = watchedValues.n?.trim();
+
+    if (!dVal || !nVal) return;
+
+    try {
+      BigInt(dVal);
+      BigInt(nVal);
+    } catch {
+      return;
+    }
+
+    clearErrors();
+    updateKeys({
+      publicKey: { e: keys.publicKey.e || keys.publicKey.e, n: nVal },
+      privateKey: { d: dVal, n: nVal }
+    });
+  }, [watchedValues.d, watchedValues.n, keys.publicKey.e]);
+
+
   const handleKeysChange = async (data: DecryptFormData) => {
     clearErrors();
     
@@ -87,7 +108,7 @@ export const DecryptPage: React.FC = () => {
     }
   };
 
-    const handleLoadExampleKeys = () => {
+  const handleLoadExampleKeys = () => {
     loadExampleKeys();
     loadExampleCipherText();
     setValue('d', '7');
